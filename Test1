@@ -1,10 +1,81 @@
-{
-"name": "John Doe",
-"age": 30,
-"isEmployed": true,
-"skills": ["JavaScript", "Python", "SQL"],
-"address": {
-"city": "New York",
-"zip": "10001"
-}
+// Person.java
+import java.util.Scanner;
+
+/**
+ * A simple Java class representing a Person with name and age.
+ */
+public class Person {
+    // Private fields (encapsulation)
+    private String name;
+    private int age;
+
+    // Default constructor
+    public Person() {
+        this.name = "Unknown";
+        this.age = 0;
+    }
+
+    // Parameterized constructor
+    public Person(String name, int age) {
+        setName(name);
+        setAge(age);
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name with validation
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name.trim();
+        } else {
+            this.name = "Unknown";
+        }
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age >= 0 && age <= 150) {
+            this.age = age;
+        } else {
+            this.age = 0; // default if invalid
+        }
+    }
+
+    // Method to display person details
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    // Main method to test the Person class
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Create a Person object using user input
+            System.out.print("Enter name: ");
+            String inputName = scanner.nextLine();
+
+            System.out.print("Enter age: ");
+            int inputAge = scanner.nextInt();
+
+            Person person = new Person(inputName, inputAge);
+
+            // Display the person's details
+            System.out.println("\nPerson Details:");
+            person.displayInfo();
+
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter correct data.");
+        } finally {
+            scanner.close();
+        }
+    }
 }
